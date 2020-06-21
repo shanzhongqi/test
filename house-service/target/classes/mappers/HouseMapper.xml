@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangliushuai.mapper.HouseMapper">
+  <select id="selects" resultType="HouseVo">
+       select * from t_house
+       <where>
+           <if test="county!=null and county!=0">
+               and county = #{county}
+           </if>
+           <if test="room!=null and room!=0 and room!=5  ">
+               and room = #{room}
+           </if>
+           <if test="maxRoom==5" >
+               and room  &gt;= #{maxRoom}
+           </if>
+
+           <if test="rent1!=null and rent1!=0 " >
+               and rent &gt;= #{rent1}
+           </if>
+           <if test="rent2!=null and rent2!=0 " >
+               and rent  &lt;= #{rent2}
+           </if>
+
+       </where>
+  </select>
+
+</mapper>
